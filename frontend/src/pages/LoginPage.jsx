@@ -1,18 +1,17 @@
-"use client";
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Lock, Eye, EyeOff, Loader2 } from "lucide-react";
-import toast from "react-hot-toast";
+import { useUserStore } from "../store/useUserStore";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     rememberMe: false,
   });
+
+  const { login, isLoading } = useUserStore();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -24,29 +23,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Set loading state
-    setIsLoading(true);
-
-    try {
-      // Simulate API call with a delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Here you would typically connect to your backend API
-      console.log("Login form submitted:", formData);
-
-      // Simulate successful login
-      toast.success("Logged in successfully!");
-
-      // Add your authentication logic here
-    } catch (error) {
-      // Handle any errors
-      toast.error("Login failed. Please check your credentials.");
-      console.error("Login error:", error);
-    } finally {
-      // Reset loading state
-      setIsLoading(false);
-    }
+    login(formData);
   };
 
   return (

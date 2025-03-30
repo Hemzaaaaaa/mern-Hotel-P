@@ -10,7 +10,9 @@ export default function Home() {
         }}
       >
         <div className="text-center text-white px-4">
-          <h1 className="text-3xl md:text-4xl font-medium mb-4">Welcome to Hotel P</h1>
+          <h1 className="text-3xl md:text-4xl font-medium mb-4">
+            Welcome to Hotel P
+          </h1>
           <p className="text-lg md:text-xl mb-6 max-w-xl mx-auto">
             Experience comfort and convenience in the heart of the city
           </p>
@@ -29,9 +31,11 @@ export default function Home() {
           <div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">ABOUT US</h2>
             <p className="text-gray-600 mb-8 leading-relaxed">
-              The passage experienced a surge in popularity during the 1960s when Letraset used it on their dry-transfer
-              sheets, and again during the 90s as desktop publishers bundled the text with their software. Today it's
-              seen all around the web; on templates, websites, and stock designs. Use our generator to get your own, or
+              The passage experienced a surge in popularity during the 1960s
+              when Letraset used it on their dry-transfer sheets, and again
+              during the 90s as desktop publishers bundled the text with their
+              software. Today it's seen all around the web; on templates,
+              websites, and stock designs. Use our generator to get your own, or
               read on for the authoritative history of lorem ipsum.
             </p>
             <a
@@ -56,7 +60,9 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">OUR ROOM</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">Lorem ipsum available, but the majority have suffered</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Lorem ipsum available, but the majority have suffered
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -70,7 +76,8 @@ export default function Home() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold mb-2">Bed Room</h3>
                 <p className="text-gray-600 mb-4">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure there
+                  If you are going to use a passage of Lorem Ipsum, you need to
+                  be sure there
                 </p>
                 <a
                   href="/rooms/twin-bed-room"
@@ -91,7 +98,8 @@ export default function Home() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold mb-2">Bed Room</h3>
                 <p className="text-gray-600 mb-4">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure there
+                  If you are going to use a passage of Lorem Ipsum, you need to
+                  be sure there
                 </p>
                 <a
                   href="/rooms/luxury-bed-room"
@@ -112,7 +120,8 @@ export default function Home() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold mb-2">Bed Room</h3>
                 <p className="text-gray-600 mb-4">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure there
+                  If you are going to use a passage of Lorem Ipsum, you need to
+                  be sure there
                 </p>
                 <a
                   href="/rooms/deluxe-bed-room"
@@ -133,7 +142,8 @@ export default function Home() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold mb-2">Bed Room</h3>
                 <p className="text-gray-600 mb-4">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure there
+                  If you are going to use a passage of Lorem Ipsum, you need to
+                  be sure there
                 </p>
                 <a
                   href="/rooms/suite-room"
@@ -154,7 +164,8 @@ export default function Home() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold mb-2">Bed Room</h3>
                 <p className="text-gray-600 mb-4">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure there
+                  If you are going to use a passage of Lorem Ipsum, you need to
+                  be sure there
                 </p>
                 <a
                   href="/rooms/executive-room"
@@ -175,7 +186,8 @@ export default function Home() {
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold mb-2">Bed Room</h3>
                 <p className="text-gray-600 mb-4">
-                  If you are going to use a passage of Lorem Ipsum, you need to be sure there
+                  If you are going to use a passage of Lorem Ipsum, you need to
+                  be sure there
                 </p>
                 <a
                   href="/rooms/modern-room"
@@ -205,7 +217,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Form */}
             <div>
-              <form action="/api/contact" method="POST" className="space-y-6">
+              <form className="space-y-6">
                 <div>
                   <input
                     type="text"
@@ -272,6 +284,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

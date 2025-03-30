@@ -1,21 +1,21 @@
-"use client";
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Lock, User, Eye, EyeOff, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
+import { useUserStore } from "../store/useUserStore";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
     agreeToTerms: false,
   });
+
+  const { signup, isLoading } = useUserStore();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -27,47 +27,12 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    signup(formData);
 
     // Password length validation
     if (formData.password.length < 8) {
       toast.error("Password must be at least 8 characters long");
       return;
-    }
-
-    // Password matching validation
-    if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
-    // Set loading state
-    setIsLoading(true);
-
-    try {
-      // Simulate API call with a delay
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // If validation passes, show success toast and proceed
-      toast.success("Account created successfully!");
-      console.log("Signup form submitted:", formData);
-
-      // Add your registration logic here
-
-      // Reset form after successful submission (optional)
-      // setFormData({
-      //   fullName: "",
-      //   email: "",
-      //   password: "",
-      //   confirmPassword: "",
-      //   agreeToTerms: false
-      // });
-    } catch (error) {
-      // Handle any errors
-      toast.error("Failed to create account. Please try again.");
-      console.error("Signup error:", error);
-    } finally {
-      // Reset loading state
-      setIsLoading(false);
     }
   };
 
@@ -87,7 +52,7 @@ export default function Signup() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor="fullName"
+                htmlFor="name"
                 className="block text-sm font-medium text-gray-700"
               >
                 Full Name
@@ -97,8 +62,8 @@ export default function Signup() {
                   <User className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
-                  id="fullName"
-                  name="fullName"
+                  id="name"
+                  name="name"
                   type="text"
                   autoComplete="name"
                   required

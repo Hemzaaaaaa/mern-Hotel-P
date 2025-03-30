@@ -1,10 +1,11 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, User, LogIn } from "lucide-react";
+import { Menu, X, User, LogIn, LogOut, Lock } from "lucide-react";
+import { useUserStore } from "../store/useUserStore";
 
 export default function Navbar() {
+  const { user, logout } = useUserStore();
+  const isAdmin = user?.role === "admin";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -64,20 +65,42 @@ export default function Navbar() {
 
           {/* Auth buttons - desktop */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              to="/login"
-              className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <LogIn size={18} className="mr-1" />
-              <span>Login</span>
-            </Link>
-            <Link
-              to="/signup"
-              className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
-            >
-              <User size={18} className="mr-1" />
-              <span>Sign Up</span>
-            </Link>
+            {isAdmin && (
+              <Link
+                to={"/admin"}
+                className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <Lock className="inline-block mr-1" size={18} />
+                <span>Dashboard</span>
+              </Link>
+            )}
+
+            {user ? (
+              <button
+                className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+                onClick={logout}
+              >
+                <LogOut size={18} className="mr-1" />
+                <span>Logout</span>
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <LogIn size={18} className="mr-1" />
+                  <span>Login</span>
+                </Link>
+                <Link
+                  to="/signup"
+                  className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+                >
+                  <User size={18} className="mr-1" />
+                  <span>Sign Up</span>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -125,22 +148,47 @@ export default function Navbar() {
                 Contact
               </Link>
               <div className="flex space-x-4 pt-2 border-t">
-                <Link
-                  to="/login"
-                  className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <LogIn size={18} className="mr-1" />
-                  <span>Login</span>
-                </Link>
-                <Link
-                  to="/signup"
-                  className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <User size={18} className="mr-1" />
-                  <span>Sign Up</span>
-                </Link>
+                {isAdmin && (
+                  <Link
+                    to={"/admin"}
+                    className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <Lock className="inline-block mr-1" size={18} />
+                    <span className="hidden sm:inline">Dashboard</span>
+                  </Link>
+                )}
+                {user ? (
+                  <button
+                    className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+                    onClick={() => {
+                      logout();
+                      setIsMenuOpen(false);
+                    }}
+                  >
+                    <LogOut size={18} className="mr-1" />
+                    <span className="hidden sm:inline ml-2">Logout</span>
+                  </button>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <LogIn size={18} className="mr-1" />
+                      <span>Login</span>
+                    </Link>
+                    <Link
+                      to="/signup"
+                      className="flex items-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <User size={18} className="mr-1" />
+                      <span>Sign Up</span>
+                    </Link>
+                  </>
+                )}
               </div>
             </nav>
           </div>
