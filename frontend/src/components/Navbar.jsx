@@ -44,7 +44,7 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              to="/rooms"
+              to="/Rooms"
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Rooms
